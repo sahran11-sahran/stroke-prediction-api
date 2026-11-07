@@ -11,6 +11,9 @@ app = FastAPI()
 model = tf.keras.models.load_model('/app/artifacts/stroke_nn_model.keras')
 scaler = joblib.load('/app/artifacts/scaler.joblib')
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 # 2. Define input schema
 class StrokeFeatures(BaseModel):
     gender: int
